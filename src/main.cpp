@@ -2,9 +2,8 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <Update.h>
+#include "secrets.h"
 
-const char* ssid = "YOUR_WIFI_SSID";
-const char* password = "YOUR_WIFI_PASSWORD";
 const char* firmwareUrl = "http://example.com/firmware.bin"; // Replace with your firmware URL
 
 
@@ -65,5 +64,6 @@ void setup() {
 }
 
 void loop() {
-
+    Serial.println("This is the new version");
+    delay(1000);
 }
