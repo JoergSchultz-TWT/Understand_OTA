@@ -4,8 +4,9 @@
 #include <Update.h>
 #include "secrets.h"
 
-const char* firmwareUrl = "http://example.com/firmware.bin"; // Replace with your firmware URL
+const char* firmwareUrl = "https://joergschultz-twt.github.io/Understand_OTA/firmware.bin";
 
+#define IS_NEW true
 
 void performOTAUpdate() {
     HTTPClient httpClient;
@@ -58,12 +59,23 @@ void setup() {
         Serial.println("Connecting to WiFi...");
     }
     Serial.println("Connected to WiFi");
-
-    // Perform OTA update
-    // performOTAUpdate();
+    delay(1000);
+    if (IS_NEW) {
+        Serial.println("This is the new version");
+        delay(1000);
+    } else {
+        Serial.println("This is the old version, Starting OTA-Update in 1 sec");
+        delay(1000);
+        performOTAUpdate();
+        Serial.println("OTA update complete!");
+    }
 }
 
 void loop() {
-    Serial.println("This is the new version");
+    if (IS_NEW) {
+        Serial.println("This is the new version");
+    } else {
+        Serial.println("This is the old version");
+    }
     delay(1000);
 }
